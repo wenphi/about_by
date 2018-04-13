@@ -1,0 +1,31 @@
+function  nurbs_intepolation_forui(k,iSegment,SumPoint, p, w, u)
+{
+	NowU=0;
+	Segment = iSegment + k - 1;
+	DeltaU = 1.0 / SumPoint;
+	for i = k:1: Segment
+		Add1 = i + 1;
+		while (NowU < u(1,Add1)) 
+            tempp=zeros(4,3);
+            tempm=zeros(1,4);
+            for m = 1: 1:4
+				tempp(m,:)=p(i-k+m+1,:)
+				tempw[m] = W[i - k + m];
+            end
+			for (l = 0; l < k; l++){
+                    for (j = 0; j < k - l; j++){
+                        float Alj = (NowU - U[i - j]) / (U[i - j + k - l] - U[i - j]);
+                        float temp0 = tempw[k - j];
+                        tempw[k - j] = (1 - Alj)* tempw[k - j - 1] + Alj * tempw[k - j];
+                        float temp1 = temp0 / tempw[k - j];
+                        float temp2 = tempw[k - j - 1] / tempw[k - j];
+                        tempx[k - j] = (1 - Alj)* temp2*tempx[k - j - 1] + Alj * temp1*tempx[k - j];
+                        tempy[k - j] = (1 - Alj)* temp2*tempy[k - j - 1] + Alj * temp1*tempy[k - j];
+                        tempz[k - j] = (1 - Alj)* temp2*tempz[k - j - 1] + Alj * temp1*tempz[k - j];
+                    end
+            end
+                printf("U=%.4f,X=%.4f,Y=%.4f,Z=%.4f i=%d\n", NowU, tempx[3], tempy[3], tempz[3],i);
+                NowU = NowU + DeltaU;
+          end
+    end
+end
