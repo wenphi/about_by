@@ -1,5 +1,5 @@
 clear
-data=importdata('/home/ywh/work2/git/emc2/build/tests/qmode6');
+data=importdata('/home/ywh/work2/git/emc2/build_x86/tests/qmode3');
 sizedata=size(data);
 lenth=sizedata(1,1);
 xmax=data(lenth,1)+1;

@@ -1,6 +1,9 @@
 clear
-% cart_pose=importdata('/home/ywh/work2/git/emc2/build/tests/cart_pose.txt');
-joint_posit=importdata('/home/ywh/work2/git/emc2/build/motion_file.txt');
+data=importdata('/home/ywh/work2/git/emc2/build_x86/tests/test_motion.txt');
+cart_pose(:,1)=data(:,7);
+cart_pose(:,2:4)=data(:,5:7);
+joint_posit(:,1)=data(:,8);
+jiont_posit(:,2:5)=data(:,1:4);
 sum=size(joint_posit);
 %
 prim_posit=joint_posit(1:sum-1,:);

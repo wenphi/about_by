@@ -1,5 +1,5 @@
 clear
-% cart_pose=importdata('/home/ywh/work2/git/emc2/build/tests/cart_pose.txt');
+cart_pose=importdata('/home/ywh/work2/git/emc2/build/tests/cart_pose.txt');
 joint_posit=importdata('/home/ywh/work2/git/emc2/build/motion_file.txt');
 sum=size(joint_posit);
 %

@@ -1,13 +1,19 @@
 clear
-% cart_pose=importdata('/home/ywh/work2/git/emc2/build/tests/cart_pose.txt');
-joint_posit=importdata('/home/ywh/work2/git/emc2/build/motion_file.txt');
-sum=size(joint_posit);
+data=importdata('/home/ywh/work2/git/emc2/build_x86/tests/motion_file.txt');
+num=size(data);
+sum=num(1,1);
+time=1:1:sum;
+time_t=time'*0.002;
+cart_pose(:,1)=time_t;
+cart_pose(:,2:4)=data(:,5:7);
+joint_posit(:,1)=time_t;
+joint_posit(:,2:5)=data(:,1:4);
 %
 prim_posit=joint_posit(1:sum-1,:);
 after_posit=joint_posit(2:sum,:);
-joint_vel=(after_posit-prim_posit)/joint_posit(1,1);
+joint_vel=abs(after_posit-prim_posit)/joint_posit(1,1);
 joint_vel(:,1)=prim_posit(:,1);
-sum=size(joint_vel)
+sum=size(joint_vel);
 %
 prim_vel=joint_vel(1:sum-1,:);
 after_vel=joint_vel(2:sum,:);
@@ -17,7 +23,7 @@ joint_acc(:,1)=prim_vel(:,1);
 w=1;
 if 1
     figure(1)
-    plot3(cart_pose(:,2),cart_pose(:,3),cart_pose(:,4),'-k','LineWidth',w);
+    plot3(cart_pose(:,2),cart_pose(:,3),cart_pose(:,4),'-ok','LineWidth',w);
     legend('cart');
     grid on;
     hold on;

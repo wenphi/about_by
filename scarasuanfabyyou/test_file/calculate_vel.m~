@@ -1,0 +1,9 @@
+clear
+motor_deg=1800;
+motor_acc_time=100;
+rate=81;
+
+%%
+joint_vel=(motor_deg/(2*motor_acc_time))/0.36;
+joint_vel=joint_vel*2*pi/rate
+joint_acc=joint_vel/(motor_acc_time/1000)
